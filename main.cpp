@@ -61,7 +61,7 @@ int main(int argc, char* argv[]) {
     setlocale(LC_ALL, "Russian");
     BSTree tree;
     for (int i=1; i<argc; i++) { 
-        tree.element(atoi(argv[i]));
+        tree.add(atoi(argv[i]));
     };
     int choice = 0;
     while (true) {
