@@ -2,17 +2,17 @@
 #include<locale>
 using namespace std;
 
-struct Node {
-    int data;
-    Node *left;
-    Node *right;
+struct Node { //создаем структуру
+    int data; //поле для информации
+    Node *left; //указатель на левую ветку
+    Node *right; //указатель на правую ветку
 };
 
-class BSTree {
-    private:
+class BSTree { //создаем класс дерево
+    private: //параметр с начальной информацией, который недоступен для редактирования
         Node *root;
-    public:
-        BSTree() { root = nullptr; }
+    public: //публичные данные
+        BSTree() { root = nullptr; } //объявляем переменную, тип которой структура дерево
         auto insert(Node*& root, int value) -> Node* {
             if (root == nullptr) {
                 root = new Node { value, nullptr, nullptr };
@@ -28,17 +28,17 @@ class BSTree {
             }
             return root;
         }
-        void insert(int value) { insert(root, value); }
-        void delete_tree(Node *&data) {
-            if (data != nullptr) {
-                delete_tree(data->left);
-                delete_tree(data->right);
+        void insert(int value) { insert(root, value); } //создание дерева
+        void delete_tree(Node *&data) { //удаление дерева
+            if (data != nullptr) { //поиск не пустых узлов
+                delete_tree(data->left); //удаление всех элементов с помощью рекурсии 
+                delete_tree(data->right); //удаление всех элементов с помощью рекурсии 
                 delete data;
                 data = nullptr;
             }
         }
         ~BSTree() {
-            delete_tree(root);
+            delete_tree(root); //полное удаление дерева
         }
         void show(Node*node, int stage) {
             if (node->left != nullptr)
@@ -54,14 +54,14 @@ class BSTree {
         void show() {
             show (root, 1);
         }
-        void direct_bypass(Node* root) {
+        void direct_bypass(Node* root) { //функция прямого обхода дерева
             if (root != nullptr) {
                 cout << root->data << " ";
                 direct_bypass(root->right);
                 direct_bypass(root->left);
             }
         }
-        void cross_bypass(Node* root) {
+        void cross_bypass(Node* root) { //функция поперчного обхода дерева
             if (root != nullptr) {
                 cross_bypass(root->right);
                 cout << root->data << " ";
@@ -69,14 +69,14 @@ class BSTree {
             }
             return;
         }
-        void reverse_bypass(Node* root) {
+        void reverse_bypass(Node* root) { //функция обратного обхода дерева
             if (root != nullptr) {
                 reverse_bypass(root->left);
                 reverse_bypass(root->right);
                 cout << root->data << " ";
             }
         }
-        void select_bypass( char choice_bypass ) {
+        void select_bypass( char choice_bypass ) { //функция выбора обхода дерева (а-прямой, б-поперечный, с-обратный)
             if (choice_bypass == 'a') 
                 direct_bypass(root);
             if (choice_bypass == 'b') 
@@ -100,9 +100,9 @@ void menu(){
 
 int main(int argc, char* argv[]) {
     setlocale(LC_ALL, "Russian");
-    BSTree tree;
+    BSTree tree; //создаем пустое дерево класса дерево
     for (int i=1; i<argc; i++) { 
-        tree.insert(atoi(argv[i]));
+        tree.insert(atoi(argv[i])); //заполнение дерева элементами
     };
     string choice_exit;
     char choice_bypass;
