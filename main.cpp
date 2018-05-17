@@ -61,7 +61,7 @@ int main(int argc, char* argv[]) {
     setlocale(LC_ALL, "Russian"); 
     BSTree tree; //создаем пустое дерево класса дерево
     for (int i=1; i<argc; i++) { 
-        tree.add(atoi(argv[i])); //заполнение дерева элементами
+        tree.insert(atoi(argv[i])); //заполнение дерева элементами
     };
     int choice = 0;
     while (true) {
