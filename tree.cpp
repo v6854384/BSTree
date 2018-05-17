@@ -128,7 +128,7 @@ int main(int argc, char* argv[]) {
             break;
             case 7:
             break;
-            case 8: cout << "Вы уверены, что хотите выйти из программы?";
+            case 8: cout << "Вы уверены, что хотите выйти из программы?" << endl;
                     cin >> choice_exit;
                     if (choice_exit == "Да")
                         return 0;
