@@ -40,7 +40,7 @@ class BSTree { //создаем класс дерево
         ~BSTree() {
             delete_tree(root); //полное удаление дерева
         }
-        void show(Node*node, int stage) {
+        void show(Node*node, int stage) { //функция вывода дерева на экран
             if (node->left != nullptr)
                 show(node->left, stage+1);
             if (node != root) { 
@@ -51,7 +51,7 @@ class BSTree { //создаем класс дерево
             if (node->right != nullptr)
                 show(node->right, stage + 1);
         }
-        void show() {
+        void show() { 
             show (root, 1);
         }
         void direct_bypass(Node* root) { //функция прямого обхода дерева
