@@ -15,49 +15,62 @@ void menu(){
     cout << "7. Проверить наличие узла" << endl;
     cout << "8. Завершить работу программы" << endl;
 }
-
-int main(int argc, char* argv[]) {
+int main(int argc, char* argv[]){
     setlocale(LC_ALL, "Russian");
     BSTree tree;
-    for (int i=1; i<argc; i++) { 
-        tree.add(atoi(argv[i]));
+    for (int i = 1; i < argc; i++){
+        tree.insert(atoi(argv[i]));
     };
-    int value = 0;
+    string choice_exit;
+    char choice_bypass;
     int choice = 0;
-    string answer; 
-    while (true) {
-        menu();
-        cin >> choice;
-        switch (choice) {
-            case 1:
-              cout << tree << endl;
+    while (true){
+    string road;
+    int value = 0;
+    menu();
+    cin >> choice;
+    switch (choice){
+        case 1:
+            tree.show ();
             break;
-            case 2:
+        case 2:
+            cout << "Выберите способ обхода" << endl;
+            cin >> choice_bypass;
+            tree.select_bypass( choice_bypass );
+            cout << endl;
             break;
-            case 3:
-              cin >> value;
-              tree->insert(value);
+        case 3:
+            cin>>value;
+            tree.insert(value);
             break;
-            case 4:
+        case 4:
+            cin>>value;
+            tree.delete_node(value);
             break;
-            case 5:
+        case 5:
+            cin>>road;
+            tree.upload_to_file(road);
             break;
-            case 6:
+        case 6:
+            cin>>road;
+            tree.unload_from_file(road);
             break;
-            case 7:
+        case 7:
+            cin>>value;
+            tree.exists(value);
             break;
-            case 8:
-              cout << "Вы уверены?(yes/no)" << endl;
-			        cin >> answer;
-			        if ((answer == "y") && (answer == "yes") && (answer == "Y") && (answer == "Yes") && (answer == "YES"))
-				      cout << "Завершение программы" << endl;
-			        return 0;
-		          default:
-			        cerr << "Ошибка" << endl;
-              return 0;
-              default: cout << " Неверная команда " << endl;
-        }
+        case 8:
+            cout << "Вы уверены, что хотите выйти из программы?";
+            cin >> choice_exit;
+            if (choice_exit == "Да" ){
+                return 0;
+            }
+            else if(choice_exit == "да" ){
+                return 0;
+            }
+
+        default:
+                cout << " Неверная команда " << endl;
     }
-delete tree;
-return 0;
+    }
 }
